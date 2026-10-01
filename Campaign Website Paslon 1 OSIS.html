@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paslon 1 - Pemilihan Ketua & Wakil Ketua OSIS SMP N 2 Kesugihan</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-blue-500 text-white flex items-center justify-center font-extrabold text-xl shadow-lg shadow-blue-500/30">
+                    1
+                </div>
+                <div>
+                    <h1 class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">PASLON 1</h1>
+                    <p class="text-[11px] text-blue-600 font-bold uppercase tracking-wider">SMP N 2 KESUGIHAN</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-600">
+                <a href="#kandidat" class="hover:text-blue-600 transition-colors">Kandidat</a>
+                <a href="#visimisi" class="hover:text-blue-600 transition-colors">Visi & Misi</a>
+                <a href="#proker" class="hover:text-blue-600 transition-colors">Program Kerja</a>
+                <a href="#dukungan" class="hover:text-blue-600 transition-colors">Aspirasi Siswa</a>
+            </nav>
+            <button onclick="triggerVote()" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/20 flex items-center gap-2">
+                <i class="fa-solid fa-heart text-pink-300"></i>
+                <span id="navVoteBtnText">Dukung Paslon 1</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 text-white py-12 md:py-20 overflow-hidden bg-grid-pattern">
+        <!-- Radial Glow Background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30 mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                    Pemilihan Ketua & Wakil Ketua OSIS 2026/2027
+                </div>
+                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                    Bersama Paslon 1 <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-sky-400">
+                        Inspiratif, Aktif & Berprestasi
+                    </span>
+                </h2>
+                <p class="mt-4 text-slate-300 text-xs sm:text-base leading-relaxed max-w-2xl mx-auto">
+                    Siap membawa OSIS SMP N 2 Kesugihan menjadi wadah kreasi, inovasi teknologi, dan karakter positif bagi seluruh siswa.
+                </p>
+
+                <!-- Quick Dukung & Counter -->
+                <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button id="heroVoteBtn" onclick="triggerVote()" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 active:scale-95 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-blue-500/30 transition-all flex items-center justify-center gap-3 text-base">
+                        <i class="fa-solid fa-thumbs-up text-xl"></i>
+                        <span>Dukung Paslon 1 Sekarang!</span>
+                    </button>
+                    <div class="bg-slate-800/80 border border-slate-700/80 px-5 py-3 rounded-2xl text-slate-200 text-xs font-medium flex items-center gap-3">
+                        <i class="fa-solid fa-users text-blue-400 text-lg"></i>
+                        <div class="text-left">
+                            <div class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Total Dukungan Siswa</div>
+                            <div class="text-lg font-black text-white"><span id="supportCounter">248</span> Suara</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Candidates Showcase -->
+    <section id="kandidat" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Calon Ketua OSIS -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group border border-slate-200">
+                <div class="absolute top-0 right-0 bg-blue-600 text-white text-[11px] font-extrabold px-4 py-2 rounded-bl-2xl uppercase tracking-wider shadow-md">
+                    Calon Ketua OSIS
+                </div>
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pt-4">
+                    <div class="relative">
+                        <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-5xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <span class="absolute -bottom-2 -right-2 bg-amber-400 text-slate-900 font-extrabold text-xs px-2.5 py-1 rounded-full shadow border-2 border-white">
+                            8a
+                        </span>
+                    </div>
+                    <div class="text-center sm:text-left grow">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 inline-block mb-2">
+                            Nomor Urut 1
+                        </span>
+                        <h3 class="text-2xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">
+                            Sybil Aqila Hasna
+                        </h3>
+                        <p class="text-slate-500 text-xs sm:text-sm font-medium mt-1">
+                            Calon Ketua OSIS SMP N 2 Kesugihan Periode 2026/2027
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">
+                                <i class="fa-solid fa-star text-amber-500 mr-1"></i> Kepemimpinan
+                            </span>
+                            <span class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">
+                                <i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> Inovatif
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calon Wakil Ketua OSIS -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group border border-slate-200">
+                <div class="absolute top-0 right-0 bg-teal-600 text-white text-[11px] font-extrabold px-4 py-2 rounded-bl-2xl uppercase tracking-wider shadow-md">
+                    Calon Wakil Ketua OSIS
+                </div>
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pt-4">
+                    <div class="relative">
+                        <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-teal-600 to-emerald-500 flex items-center justify-center text-white text-5xl shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <span class="absolute -bottom-2 -right-2 bg-amber-400 text-slate-900 font-extrabold text-xs px-2.5 py-1 rounded-full shadow border-2 border-white">
+                            7g
+                        </span>
+                    </div>
+                    <div class="text-center sm:text-left grow">
+                        <span class="text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100 inline-block mb-2">
+                            Nomor Urut 1
+                        </span>
+                        <h3 class="text-2xl font-black text-slate-900 group-hover:text-teal-600 transition-colors">
+                            Ahmad Miftahul Ulum
+                        </h3>
+                        <p class="text-slate-500 text-xs sm:text-sm font-medium mt-1">
+                            Calon Wakil Ketua OSIS SMP N 2 Kesugihan Periode 2026/2027
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">
+                                <i class="fa-solid fa-handshake text-teal-500 mr-1"></i> Kolaboratif
+                            </span>
+                            <span class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">
+                                <i class="fa-solid fa-bolt text-teal-500 mr-1"></i> Energik
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi & Misi Section -->
+    <section id="visimisi" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-extrabold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                Arah & Komitmen
+            </span>
+            <h3 class="text-3xl font-black text-slate-900 mt-2">Visi & Misi Paslon 1</h3>
+            <p class="text-slate-500 text-sm mt-1">Landasan kerja kami untuk memajukan seluruh siswa SMP N 2 Kesugihan</p>
+        </div>
+
+        <!-- Visi Banner Card -->
+        <div class="bg-gradient-to-r from-blue-900 via-slate-900 to-blue-950 text-white rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden mb-10 border border-slate-800">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10 max-w-3xl mx-auto text-center">
+                <div class="w-14 h-14 bg-blue-500/20 border border-blue-400/30 rounded-2xl flex items-center justify-center text-blue-400 text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <span class="text-xs font-extrabold text-blue-400 uppercase tracking-widest">VISI UTAMA</span>
+                <blockquote class="text-lg sm:text-2xl font-bold leading-relaxed mt-3 text-slate-100 italic">
+                    "Mewujudkan lingkungan yang menginspirasi dan berprestasi demi terwujudnya siswa yang berkarakter serta mewujudkan OSIS yang aktif, kreatif, dan inspiratif bagi seluruh siswa."
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- Misi Grid -->
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Misi 1 -->
+            <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center font-black text-xl mb-5 shadow-sm">
+                        01
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-lg mb-2">Pengembangan Minat & Bakat</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Memberikan ruang terbuka kepada siswa untuk mengembangkan minat dan bakat melalui kegiatan positif.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 text-blue-600 font-bold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Ekspresi & Kreativitas</span>
+                </div>
+            </div>
+
+            <!-- Misi 2 -->
+            <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center font-black text-xl mb-5 shadow-sm">
+                        02
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-lg mb-2">Kegiatan Edukatif & Teknologi</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Menghadirkan kegiatan edukatif yang relevan dengan zaman dan perkembangan teknologi di masa kini.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 text-teal-600 font-bold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>Adaptif Digital</span>
+                </div>
+            </div>
+
+            <!-- Misi 3 -->
+            <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-black text-xl mb-5 shadow-sm">
+                        03
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-lg mb-2">Wadah Aspirasi Berakhlak</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Menjadi wadah komunikasi siswa menyampaikan ide dan aspirasi secara positif dan berakhlak.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 text-indigo-600 font-bold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Kritik & Saran Membangun</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Kerja Section -->
+    <section id="proker" class="bg-slate-100/70 py-16 border-y border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold text-teal-600 uppercase tracking-widest bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
+                    Aksi Nyata
+                </span>
+                <h3 class="text-3xl font-black text-slate-900 mt-2">Program Kerja Unggulan (Proker)</h3>
+                <p class="text-slate-500 text-sm mt-1">Klik tiap program untuk melihat detail rencana kegiatan</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Proker 1 -->
+                <div onclick="toggleProkerModal(1)" class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all hover:border-amber-400 group relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl font-bold shadow-md shadow-amber-500/30 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <span class="text-[11px] font-extrabold text-amber-600 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-lg">Proker 1</span>
+                    <h4 class="text-xl font-extrabold text-slate-900 mt-3 group-hover:text-amber-600 transition-colors">
+                        Eco-Art & Talent Showcase
+                    </h4>
+                    <p class="text-xs font-semibold text-slate-500 mt-1">Pameran Bakat & Kreasi Lingkungan</p>
+                    <p class="text-slate-600 text-sm mt-3 leading-relaxed line-clamp-3">
+                        Ajang pentas seni dan pameran hasil karya daur ulang sampah serta inovasi ramah lingkungan dari siswa-siswi SMP N 2 Kesugihan.
+                    </p>
+                    <div class="mt-5 flex items-center gap-1 text-xs font-bold text-amber-600">
+                        <span>Lihat Rincian</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Proker 2 -->
+                <div onclick="toggleProkerModal(2)" class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all hover:border-emerald-400 group relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl font-bold shadow-md shadow-emerald-500/30 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+                    <span class="text-[11px] font-extrabold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-lg">Proker 2</span>
+                    <h4 class="text-xl font-extrabold text-slate-900 mt-3 group-hover:text-emerald-600 transition-colors">
+                        Sahabat Bumi, Sahabat Sesama
+                    </h4>
+                    <p class="text-xs font-semibold text-slate-500 mt-1">Green Teambuilding & Kampanye Kreatif</p>
+                    <p class="text-slate-600 text-sm mt-3 leading-relaxed line-clamp-3">
+                        Kegiatan penghijauan lingkungan sekolah dikemas dalam permainan teambuilding seru, bersih sekolah bersama, dan poster kampanye digital.
+                    </p>
+                    <div class="mt-5 flex items-center gap-1 text-xs font-bold text-emerald-600">
+                        <span>Lihat Rincian</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Proker 3 -->
+                <div onclick="toggleProkerModal(3)" class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all hover:border-sky-400 group relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-2xl font-bold shadow-md shadow-sky-500/30 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <span class="text-[11px] font-extrabold text-sky-600 uppercase tracking-wider bg-sky-50 px-2.5 py-1 rounded-lg">Proker 3</span>
+                    <h4 class="text-xl font-extrabold text-slate-900 mt-3 group-hover:text-sky-600 transition-colors">
+                        Taman Literasi & Pentas Suara
+                    </h4>
+                    <p class="text-xs font-semibold text-slate-500 mt-1">Ruang Terbuka Ramah Anak</p>
+                    <p class="text-slate-600 text-sm mt-3 leading-relaxed line-clamp-3">
+                        Penyediaan sudut baca terbuka nyaman di area taman sekolah yang terintegrasi dengan forum diskusi aspirasi dan mimbar bebas karya.
+                    </p>
+                    <div class="mt-5 flex items-center gap-1 text-xs font-bold text-sky-600">
+                        <span>Lihat Rincian</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Aspirasi & Comments Board -->
+    <section id="dukungan" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Column: Form Submisi Pesan -->
+            <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-900">Kirim Dukungan & Pesan</h3>
+                        <p class="text-xs text-slate-500">Tinggalkan pesan semangat untuk Paslon 1</p>
+                    </div>
+                </div>
+
+                <form id="commentForm" onsubmit="submitComment(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap / Inisial</label>
+                        <input type="text" id="studentName" required placeholder="Contoh: Rian Pratama" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Kelas</label>
+                        <select id="studentClass" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                            <option value="" disabled selected>Pilih Kelas Kamu</option>
+                            <option value="Kelas 7">Kelas 7</option>
+                            <option value="Kelas 8">Kelas 8</option>
+                            <option value="Kelas 9">Kelas 9</option>
+                            <option value="Alumni / Guru">Guru / Staf / Alumni</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Pesan / Harapan</label>
+                        <textarea id="studentMessage" required rows="3" placeholder="Tuliskan harapan kamu untuk Paslon 1..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-blue-600 active:scale-95 text-white font-bold py-3.5 rounded-xl transition-all shadow-md text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Kirim Dukungan Siswa</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Column: Live Comment Feed -->
+            <div class="lg:col-span-7">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-900">Suara Dukungan Siswa</h3>
+                        <p class="text-xs text-slate-500">Pesan dari teman-teman SMP N 2 Kesugihan</p>
+                    </div>
+                    <span class="text-xs font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full" id="commentCountBadge">
+                        3 Pesan
+                    </span>
+                </div>
+
+                <div id="commentsContainer" class="space-y-4 max-h-[480px] overflow-y-auto pr-1">
+                    <!-- Dynamic Comments Loaded Here -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal Rincian Proker -->
+    <div id="prokerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in duration-200">
+            <button onclick="toggleProkerModal(0)" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 font-bold transition-colors">
+                ✕
+            </button>
+            <div id="modalContent">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Toast Notification -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-blue-500 text-white flex items-center justify-center font-bold" id="toastIcon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <div class="text-xs font-bold text-white" id="toastTitle">Sukses!</div>
+            <div class="text-[11px] text-slate-300" id="toastMessage">Pesan berhasil disampaikan.</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 text-center text-xs">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white font-black text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/20">
+                1
+            </div>
+            <p class="font-extrabold text-slate-200 text-sm">PASLON 1 — PEMILIHAN OSIS SMP N 2 KESUGIHAN</p>
+            <p class="mt-1 text-slate-400">Sybil Aqila Hasna (Ketua) & Ahmad Miftahul Ulum (Wakil)</p>
+            <p class="mt-6 text-[10px] text-slate-500">© 2026 Tim Kampanye Paslon 1. Seluruh hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data State
+        let supportVotes = parseInt(localStorage.getItem('paslon1_votes')) || 248;
+        let userHasVoted = localStorage.getItem('paslon1_user_voted') === 'true';
+
+        // Pre-populated Initial Comments
+        const defaultComments = [
+            {
+                name: "Rangga Pratama",
+                class: "Kelas 8",
+                message: "Semangat Mbak Sybil & Mas Ulum! Visi misinya mantap banget, khususnya program Taman Literasi!",
+                time: "10 menit lalu"
+            },
+            {
+                name: "Nabila Aulia",
+                class: "Kelas 7",
+                message: "Paslon 1 paling kompak! Dukung penuh untuk OSIS 2026/2027 yang lebih aktif!",
+                time: "1 jam lalu"
+            },
+            {
+                name: "Fahri Kurniawan",
+                class: "Kelas 9",
+                message: "Program Eco-Art keren banget ide kreasinya. Sukses terus ya buat Paslon 1!",
+                time: "3 jam lalu"
+            }
+        ];
+
+        let commentsList = JSON.parse(localStorage.getItem('paslon1_comments')) || defaultComments;
+
+        // Proker Detail Data
+        const prokerData = {
+            1: {
+                title: "Program 'Eco-Art & Talent Showcase'",
+                subtitle: "Pameran Bakat & Kreasi Lingkungan",
+                badge: "Proker 1",
+                badgeColor: "bg-amber-100 text-amber-700",
+                icon: "fa-palette",
+                iconBg: "bg-amber-500",
+                desc: "Program ini menggabungkan kreasi seni siswa dengan kepedulian lingkungan hidup. Siswa diajak menciptakan karya seni unggulan dari bahan daur ulang dan menampilkannya dalam pameran berkala sekolah.",
+                points: [
+                    "Pameran karya seni daur ulang antar kelas.",
+                    "Pentas bakat musik, puisi, dan seni pertunjukan.",
+                    "Penghargaan 'Class Eco-Artist' bagi karya terbaik."
+                ]
+            },
+            2: {
+                title: "Program 'Sahabat Bumi, Sahabat Sesama'",
+                subtitle: "Green Teambuilding & Kampanye Kreatif",
+                badge: "Proker 2",
+                badgeColor: "bg-emerald-100 text-emerald-700",
+                icon: "fa-tree",
+                iconBg: "bg-emerald-500",
+                desc: "Fokus pada pembentukan karakter peduli lingkungan dan kebersamaan antar angkatan. Kegiatan out-door ringan yang mempererat tali persaudaraan sekaligus menjaga kebersihan sekolah.",
+                points: [
+                    "Aksi tanam pohon dan tanam bunga di area sekolah.",
+                    "Lomba kampanye kebersihan kreatif berbasis video pendek/poster.",
+                    "Kerja bakti gembira dengan sistem teambuilding antar kelas."
+                ]
+            },
+            3: {
+                title: "Program 'Taman Literasi & Pentas Suara'",
+                subtitle: "Ruang Terbuka Ramah Anak",
+                badge: "Proker 3",
+                badgeColor: "bg-sky-100 text-sky-700",
+                icon: "fa-book-open",
+                iconBg: "bg-sky-500",
+                desc: "Menyediakan area ruang terbuka hijau ramah anak yang dilengkapi dengan rak buku bacaan menarik, serta mimbar terbuka untuk penyampaian aspirasi dan ide-ide kreatif siswa.",
+                points: [
+                    "Pengelolaan sudut baca terbuka yang nyaman di taman sekolah.",
+                    "Kotak aspirasi fisik & digital 'Suara Siswa Spenda'.",
+                    "Sesi diskusi santai bersama pengurus OSIS setiap bulan."
+                ]
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateVoteUI();
+            renderComments();
+        });
+
+        // Trigger Vote Function with Confetti
+        function triggerVote() {
+            if (!userHasVoted) {
+                supportVotes++;
+                userHasVoted = true;
+                localStorage.setItem('paslon1_votes', supportVotes);
+                localStorage.setItem('paslon1_user_voted', 'true');
+
+                // Launch Confetti
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+
+                showToast('Dukungan Terkirim! 🎉', 'Terima kasih telah mendukung Paslon 1!');
+            } else {
+                showToast('Sudah Mendukung! ❤️', 'Kamu telah memberikan dukungan untuk Paslon 1.');
+            }
+            updateVoteUI();
+        }
+
+        // Update Vote Buttons UI
+        function updateVoteUI() {
+            document.getElementById('supportCounter').innerText = supportVotes;
+            const navBtnText = document.getElementById('navVoteBtnText');
+            const heroBtn = document.getElementById('heroVoteBtn');
+
+            if (userHasVoted) {
+                if (navBtnText) navBtnText.innerText = 'Telah Didukung';
+                if (heroBtn) {
+                    heroBtn.classList.remove('from-blue-600', 'to-teal-500');
+                    heroBtn.classList.add('from-emerald-600', 'to-teal-600');
+                    heroBtn.innerHTML = `<i class="fa-solid fa-circle-check text-xl"></i> <span>Kamu Mendukung Paslon 1!</span>`;
+                }
+            }
+        }
+
+        // Render Comments Feed
+        function renderComments() {
+            const container = document.getElementById('commentsContainer');
+            const badge = document.getElementById('commentCountBadge');
+            
+            badge.innerText = `${commentsList.length} Pesan`;
+            container.innerHTML = '';
+
+            commentsList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex gap-3 items-start animate-in fade-in duration-300';
+                card.innerHTML = `
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                        ${item.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div class="grow">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <h5 class="font-bold text-slate-900 text-sm">${item.name}</h5>
+                                <span class="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">${item.class}</span>
+                            </div>
+                            <span class="text-[10px] text-slate-400">${item.time || 'Baru saja'}</span>
+                        </div>
+                        <p class="text-slate-600 text-xs mt-1.5 leading-relaxed">${item.message}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Submit New Comment
+        function submitComment(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('studentName');
+            const classInput = document.getElementById('studentClass');
+            const msgInput = document.getElementById('studentMessage');
+
+            const newComment = {
+                name: nameInput.value.trim(),
+                class: classInput.value,
+                message: msgInput.value.trim(),
+                time: 'Baru saja'
+            };
+
+            commentsList.unshift(newComment);
+            localStorage.setItem('paslon1_comments', JSON.stringify(commentsList));
+            
+            renderComments();
+            
+            // Reset form
+            nameInput.value = '';
+            classInput.value = '';
+            msgInput.value = '';
+
+            showToast('Pesan Terkirim!', 'Dukungan kamu telah ditambahkan ke papan suara.');
+            
+            // Optional confetti on comment
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 50, spread: 50, origin: { y: 0.8 } });
+            }
+        }
+
+        // Modal Functionality for Proker
+        function toggleProkerModal(id) {
+            const modal = document.getElementById('prokerModal');
+            const modalContent = document.getElementById('modalContent');
+
+            if (id === 0 || !prokerData[id]) {
+                modal.classList.add('hidden');
+            } else {
+                const data = prokerData[id];
+                modalContent.innerHTML = `
+                    <div class="w-12 h-12 rounded-2xl ${data.iconBg} text-white flex items-center justify-center text-xl shadow-lg mb-4">
+                        <i class="fa-solid ${data.icon}"></i>
+                    </div>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${data.badgeColor}">${data.badge}</span>
+                    <h3 class="text-xl font-black text-slate-900 mt-2">${data.title}</h3>
+                    <p class="text-xs font-semibold text-slate-500">${data.subtitle}</p>
+                    <p class="text-slate-600 text-sm mt-4 leading-relaxed">${data.desc}</p>
+
+                    <div class="mt-5 space-y-2">
+                        <div class="text-xs font-bold text-slate-900 uppercase tracking-wider">Rencana Pelaksanaan:</div>
+                        ${data.points.map(pt => `
+                            <div class="flex items-center gap-2 text-xs text-slate-700">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                <span>${pt}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <button onclick="toggleProkerModal(0)" class="mt-6 w-full bg-slate-900 text-white font-bold py-3 rounded-xl text-xs hover:bg-blue-600 transition-colors">
+                        Tutup Rincian
+                    </button>
+                `;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        // Toast Helper
+        function showToast(title, message) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
